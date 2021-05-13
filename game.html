@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Παιχνίδι των κύβων</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="nim.js" defer></script>    
+</head>
+
+<body>
+    <table style="display: inline;float:left;">
+        <tr>            
+            <td>
+                <form action="game.html" onSubmit="reload()">
+                    <label for="m">m</label>
+                    <input type="text" id="m" class="item" value="" />
+                    <label for="k">k</label>
+                    <input type="text" id="k" class="item" value="" />
+                    <button>Παίξε</button>
+                    <textarea id="log"></textarea>
+                </form>
+
+            </td>
+        </tr>        
+    </table>
+    <div class="clt" style="display: inline; float:left;">
+        <ul id="test"></ul>
+    </div>
+</body>
+
+</html>
