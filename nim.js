@@ -1,7 +1,4 @@
 //Δήλωση μεταβλητών
-// let m = document.getElementById("m").value; //Μεταβλητή για το πόσοι θα είναι οι κύβοι στο τραπέζι
-// let k = document.getElementById("k").value;  //Μεταβλητή για το πόσο θα είναι το Κ
-
 let m; //Μεταβλητή για το πόσοι θα είναι οι κύβοι στο τραπέζι
 let k;  //Μεταβλητή για το πόσο θα είναι το Κ
 
@@ -134,21 +131,24 @@ function createAvailablePaths(round) {
         winningpathsranked.set(i, [winningpaths[i], sum]);
 
         //Εδώ ορίζουμε την συνάρτηση αξιολόγισης. Τυπικά θέλουμε ο υπολογιστής να διαλέξει ένα μονό μονοπάτι
+        
         if (winningpaths[i].length % 2 == 1) {
             //Και θέλουμε να έχει και το μικρότερο άθροισμα η διαδρομή
             //Αν λοιπόν το άθροισμα είναι μικρότερο από το προηγούμενο άθροισμα το αποθηκεύουμε ως καλύτερη διαδρομή για τον υπολογιστή
-            if (sum < lessoddsum) {
+            //if (sum < lessoddsum) {
                 lessoddsum = sum;
                 lessoddmove = i;
-            }
+            //}
         }
         sum = 0;
     }
     //Ορίζουμε την ελάχιστη κίνηση για τον υπολογιστή να είναι το 1
-    pcmove = 1;
+    
     if (round != null) {
         //Και μετά αφαιρούμε τους κόμβους για να βρούμε την διαφορά ώστε να παίξει ο υπολογιστής την κίνηση
         pcmove = winningpaths[lessoddmove][round - 1] - winningpaths[lessoddmove][round];
+    }else{
+        pcmove = 1;
     }
     return pcmove;
 }
@@ -239,9 +239,13 @@ function computer(round) {
     winningpaths = [];
     //Για να παίξει ο υπολογιστής απλά τσεκάρει τι διαθέσιμα δρομολόγια υπάρχουν 
     for (let i = 0; i < winningpathsranked.size; i++) {
-        winningpaths.push(winningpathsranked.get(i)[0]);
-    }
 
+        
+            winningpaths.push(winningpathsranked.get(i)[0]);
+            //log("Available path " + winningpathsranked.get(i)[0]);
+                        
+    }
+    
     //Και τα στέλνει στην συνάρτηση για να δημιουργηθούν τα κατάληλα μέσω της συνάρτησης αξιολόγησης
     return createAvailablePaths(round);
 }
@@ -268,9 +272,9 @@ function initgame(){
         total = m;
     }else{
 
-        document.getElementById("m").value = 8;
+        document.getElementById("m").value = 10;
         document.getElementById("k").value = 4;
-        m = 8;
+        m = 10;
         k = 4;
         total = m;
     }
@@ -284,11 +288,11 @@ function initgame(){
 
 
 }
-initgame();
-
 
 function reload(){
     localStorage.setItem('m',document.getElementById("m").value);
     localStorage.setItem('k',document.getElementById("k").value);
     window.location.reload();    
 }
+
+initgame();
